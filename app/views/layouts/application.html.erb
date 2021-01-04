@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
   <head>
     <title>Bookstore</title>
@@ -8,36 +7,63 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #C91B33;">
       <div class="container">
-        <a class="navbar-brand" href="/">The Idea App</a>
+        <a class="navbar-brand mb-0 h1" href="/">BookStore</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/ideas">Ideas</a>
+          <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <%= link_to 'Home', root_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/pages/info">Info</a>
+              <%= link_to 'Newest Books', root_path, class: "nav-link" %>
             </li>
-          </ul>
-
-          <p class="navbar-text float-right">
-            <% if user_signed_in? %>
-              Logged in as <strong><%= current_user.email %></strong>.
-              <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-              <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-            <% else %>
-              <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-              <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+            <li class="nav-item">
+              <%= link_to 'Top Rating', root_path, class: "nav-link" %>
+            </li>
+            <% if user_signed_in? and current_user.user?%>
+              <li class="nav-item">
+                <%= link_to 'My List', "#", class: "nav-link" %>
+              </li>
+            <% elsif user_signed_in? and current_user.admin?%>
+              <li class="nav-item">
+                <%= link_to 'Orders', "#", class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Users', 'users#index' , class: "nav-link" %>
+              </li>
             <% end %>
-          </p>
+          </ul>
+          <ul class="navbar-nav mr-sm-2">
+            <% if user_signed_in? %>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <%= current_user.username %>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <% unless current_user.admin? %>
+                    <li><%= link_to "My orders", root_path, :class => 'dropdown-item' %></li>
+                  <% end %>
+                  <li><%= link_to "Edit profile", edit_user_registration_path, :class => 'dropdown-item' %></li>
+                  <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'dropdown-item' %></li>
+                </ul>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link' %> |
+              </li>
+              <li class="nav-item">
+                <%= link_to "Login", new_user_session_path, :class => 'navbar-link' %>
+              </li>
+            <% end %>
+          </ul>
         </div>
       </div>
     </nav>
@@ -57,8 +83,6 @@
         Date <%= Time.now.year %>
       </div>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
   </body>
 </html>

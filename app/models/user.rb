@@ -4,10 +4,17 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, authentication_keys: [:login]
 
+  enum role: [:user, :vip, :admin]
+  after_initialize :set_default_role, :if => :new_record?
+
   attr_writer :login
 
   def login
     @login || self.username || self.email
+  end
+
+  def set_default_role
+    self.role ||= :user
   end
 
   #Part of code, which adding possibility for users to login by their username and email.

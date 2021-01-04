@@ -1,4 +1,10 @@
-<% @users.each do |user| %>
-  <%= user.username %><br/>
-  <%= user.email %><br/>
-<% end %>
+<ul>
+  <% @users.each do |user| #render "shared/user_profile", locals: {user: user} %>
+    <li>
+      <div><%= user.username %></div>
+      <div><%= user.email %></div>
+      <div><%= user.role %></div>
+      <div><%= user.created_at %></div>
+    </li>
+  <% end %>
+</ul>
