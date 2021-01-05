@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :products
   devise_for :users, :path_prefix => 'd'
-  resources :users, :only =>[:show]
 
+  resources :users, :only =>[:show]
   get 'users/index'
   match '/users',   to: 'users#index',   via: 'get'
   match '/users/:id',     to: 'users#show',       via: 'get'

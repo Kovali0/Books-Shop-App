@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @product.title %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @product.author %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+
+<% if user_signed_in? and current_user.admin? %>
+  <%= link_to 'Edit', edit_product_path(@product) %> |
+<% end %>
+<%= link_to 'Back', products_path %>
