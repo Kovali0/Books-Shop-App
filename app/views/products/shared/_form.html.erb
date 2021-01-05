@@ -26,6 +26,12 @@
     <%= form.text_area :description %>
   </div>
 
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.number_field :price, step: 0.01 %>
+    <%= form.select :currency, Price.currencies.keys %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

@@ -15,6 +15,11 @@
   <%= @product.description %>
 </p>
 
+<p>
+  <strong>Price:</strong>
+  <%= @product.price.to_s %>
+</p>
+
 <% if user_signed_in? and current_user.admin? %>
   <%= link_to 'Edit', edit_product_path(@product) %> |
 <% end %>
