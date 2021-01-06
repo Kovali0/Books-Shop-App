@@ -10,8 +10,13 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    @comments = @product.comments.all
+    @comment = @product.comments.build
   end
 
+  def newest
+    @products = Product.order('created_at DESC')
+  end
   # GET /products/new
   def new
     @product = Product.new

@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :comments
   resources :products
-  devise_for :users, :path_prefix => 'd'
+  match '/newest',   to: 'products#newest', via: 'get'
+  match '/toprating',   to: 'products#toprating', via: 'get'
 
+  devise_for :users, :path_prefix => 'd'
   resources :users, :only =>[:show]
   get 'users/index'
   match '/users',   to: 'users#index',   via: 'get'

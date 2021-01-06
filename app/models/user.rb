@@ -17,6 +17,8 @@ class User < ApplicationRecord
     self.role ||= :user
   end
 
+  validates :name, :email, presence: truegit status
+
   #Part of code, which adding possibility for users to login by their username and email.
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true

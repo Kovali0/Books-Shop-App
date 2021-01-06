@@ -24,3 +24,14 @@
   <%= link_to 'Edit', edit_product_path(@product) %> |
 <% end %>
 <%= link_to 'Back', products_path %>
+
+<h3>Comments</h3>
+<% @comments.each do |comment| %>
+  <div>
+    <strong><%= comment.username %></strong>
+    <br>
+    <p><%= comment.content %></p>
+    <p><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  </div>
+<% end %>
+<%= render partial: 'comments/form', locals: { comment: @comment } %>
