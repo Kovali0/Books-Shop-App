@@ -22,14 +22,19 @@
   </div>
 
   <div class="field">
+    <%= form.label :category %>
+    <%= form.select :category_id, Category.all.map {|c| [c.category, c.id]} %>
+  </div>
+
+  <div class="field">
     <%= form.label :description %>
     <%= form.text_area :description %>
   </div>
 
   <div class="field">
     <%= form.label :price %>
-    <%= form.number_field :price, step: 0.01 %>
-    <%= form.select :currency, Price.currencies.keys %>
+    <%= form.number_field :price.cost, step: 0.01 %>
+    <%= form.select :price.currency, Price.currencies.keys {|p| [p.id]} %>
   </div>
 
   <div class="actions">

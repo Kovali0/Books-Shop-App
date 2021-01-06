@@ -17,7 +17,7 @@ class User < ApplicationRecord
     self.role ||= :user
   end
 
-  validates :name, :email, presence: truegit status
+  validates :name, :email, presence: true
 
   #Part of code, which adding possibility for users to login by their username and email.
   validates :username, presence: true, uniqueness: { case_sensitive: false }

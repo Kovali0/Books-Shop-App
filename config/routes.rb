@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :categories
   resources :comments
   resources :products
   match '/newest',   to: 'products#newest', via: 'get'
@@ -11,6 +12,6 @@ Rails.application.routes.draw do
   match '/users',   to: 'users#index',   via: 'get'
   match '/users/:id',     to: 'users#show',       via: 'get'
 
-  root 'application#mainpage'
+  root 'products#home'
 
 end

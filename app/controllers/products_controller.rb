@@ -4,7 +4,23 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @categories = Category.all
+    cate = params[:cate]
+    if !cate.nil?
+      @products = Product.where(:category_id => cate)
+    else
+      @products = Product.all
+    end
+  end
+
+  def home
+    @categories = Category.all
+    cate = params[:cate]
+    if !cate.nil?
+      @products = Product.where(:category_id => cate)
+    else
+      @products = Product.all
+    end #todo repair span-badge frontend
   end
 
   # GET /products/1
@@ -30,6 +46,7 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
+    #@price = Price.create(user: @user)
 
     respond_to do |format|
       if @product.save
@@ -74,6 +91,6 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:title, :author, :description)
+      params.require(:product).permit(:title, :author, :description, :category_id)
     end
 end

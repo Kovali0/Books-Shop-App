@@ -1,0 +1,45 @@
+<html>
+  <body>
+    <h4>Welcom on Fantazy Bookstore!</h4>
+    <%= yield %>
+    <h1>Products</h1>
+
+    <div class="container">
+      <div class="col-md-13">
+        <div class="row">
+          <% @products.each do |product| %>
+            <div class="col-md-3">
+              <div class="card mt-3">
+                <img src="" style="width:100%">
+                <h1><%= product.title %></h1>
+                <h1><%= product.author %></h1>
+                <p><%= product.category.category %></p>
+                <p class="price">$19.99</p>
+                <p><%= link_to 'Show', product ,  class: 'btn btn-primary' %></p>
+                <p><button>Add to Cart</button></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-md-2">
+          <div class="card mt-2">
+            <div class="card-header">
+              Categories
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <% @categories.each do |category| %>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <%= link_to category.category, root_path(:cate => category.id) %>
+                    <span class="badge badge-info badge-pill"><%= category.products.count %></span>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
