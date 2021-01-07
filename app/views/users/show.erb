@@ -1,3 +1,59 @@
-<h1><%= @user.username %></h1>
-<h5><%= @user.email%></h5>
-<h5>Your role: <%= @user.role%></h5>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 ">
+      <div class="panel panel-default">
+        <div class="panel-heading">  <h4 >User Profile</h4></div>
+        <div class="panel-body">
+          <div class="box box-info">
+            <div class="box-body">
+              <div class="col-sm-3">
+                <div  align="center"> <img alt="Default user" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive"></div>
+                <br>
+              </div>
+              <div class="clearfix"></div>
+              <hr style="margin:5px 0 5px 0;">
+              <div class="col-sm-5 col-xs-6 tital " >Username:</div><div class="col-sm-7 col-xs-6 "><%= @user.username %></div>
+              <div class="clearfix"></div>
+              <div class="bot-border"></div>
+
+              <div class="col-sm-5 col-xs-6 tital " >First Name:</div><div class="col-sm-7"><%= @user.name %></div>
+              <div class="clearfix"></div>
+              <div class="bot-border"></div>
+
+              <div class="col-sm-5 col-xs-6 tital " >Last Name:</div><div class="col-sm-7"><%= @user.surname %></div>
+              <div class="clearfix"></div>
+              <div class="bot-border"></div>
+
+              <div class="col-sm-5 col-xs-6 tital " >Joined:</div><div class="col-sm-7"><%= @user.created_at %></div>
+              <div class="clearfix"></div>
+              <div class="bot-border"></div>
+
+              <div class="col-sm-5 col-xs-6 tital " >Email:</div><div class="col-sm-7"><%= @user.email %></div>
+              <div class="clearfix"></div>
+              <div class="bot-border"></div>
+
+              <div class="col-sm-5 col-xs-6 tital " >Address:</div><div class="col-sm-7"><%= @user.full_address %></div>
+              <div class="clearfix"></div>
+              <div class="bot-border"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+        $(function() {
+            $('#profile-image1').on('click', function() {
+                $('#profile-image-upload').click();
+            });
+        });
+    </script>
+  </div>
+</div>
+
+
+
+

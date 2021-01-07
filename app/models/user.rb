@@ -7,6 +7,20 @@ class User < ApplicationRecord
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
+  scope :from_poland, -> { where(country: "Poland") }
+
+  def admin?
+    self.role == 'admin'
+  end
+
+  def vip?
+    self.role == 'vip'
+  end
+
+  def user?
+    self.role == 'user'
+  end
+
   attr_writer :login
 
   def login
@@ -33,4 +47,31 @@ class User < ApplicationRecord
   end
   #End of part for login upgrade
 
+  def address
+    @address ||= Address.new(country, city, street, postcode)
+  end
+
+  def address=(address)
+    self[:address_country] = address.country
+    self[:address_city] = address.city
+    self[:address_street] = address.street
+    self[:address_postcode] = address.postcode
+    @address = address
+  end
+end
+
+class Address
+  attr_reader :country, :city, :street, :postcode
+
+  def initialize(country, city, street, postcode)
+    @country, @city, @street, @postcode = country, city, street, postcode
+  end
+
+  def ==(other_address)
+    country == other_address.country && city == other_address.city && street == other_address.street && postcode == other_address.postcode
+  end
+
+  def full?
+    not (country.nil? || city.nil? || street.nil? || postcode.nil?)
+  end
 end

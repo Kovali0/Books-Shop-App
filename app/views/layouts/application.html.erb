@@ -71,6 +71,9 @@
                   <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'dropdown-item' %></li>
                 </ul>
               </li>
+              <li class="nav-item">
+                <%= render 'cart/cart'%>
+              </li>
             <% else %>
               <li class="nav-item">
                 <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>

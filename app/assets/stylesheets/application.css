@@ -32,6 +32,13 @@ body { margin: 0; }
     opacity: 0.7;
 }
 
+#wrapper {
+    text-align: center;
+}
+
+#yourdiv {
+    display: inline-block;
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.

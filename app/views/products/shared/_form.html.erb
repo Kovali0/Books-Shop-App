@@ -33,8 +33,8 @@
 
   <div class="field">
     <%= form.label :price %>
-    <%= form.number_field :price.cost, step: 0.01 %>
-    <%= form.select :price.currency, Price.currencies.keys {|p| [p.id]} %>
+    <%= form.number_field :price, step: 0.01 %>
+    <%= form.select :currency, Product.currencies {|moc| [moc.id]} %>
   </div>
 
   <div class="actions">

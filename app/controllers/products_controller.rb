@@ -7,31 +7,39 @@ class ProductsController < ApplicationController
     @categories = Category.all
     cate = params[:cate]
     if !cate.nil?
-      @products = Product.where(:category_id => cate)
+      @products = Product.where(:category_id => cate).decorate
     else
-      @products = Product.all
+      @products = Product.all.decorate
     end
   end
 
   def home
+    @long_titles = Product.with_long_title
+    @order_item = current_order.order_items.new
     @categories = Category.all
     cate = params[:cate]
     if !cate.nil?
-      @products = Product.where(:category_id => cate)
+      @products = Product.where(:category_id => cate).decorate
     else
-      @products = Product.all
+      @products = Product.all.decorate
     end #todo repair span-badge frontend
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
+    @product = @product.decorate
     @comments = @product.comments.all
     @comment = @product.comments.build
   end
 
   def newest
-    @products = Product.order('created_at DESC')
+    @products = Product.order('created_at DESC').decorate
+  end
+
+  def toprating
+    @products = Product.all.decorate
+    @products = @products.sort { |a,b| b.total_rating <=> a.total_rating }
   end
   # GET /products/new
   def new
@@ -91,6 +99,6 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:title, :author, :description, :category_id)
+      params.require(:product).permit(:title, :author, :description, :category_id, :price, :currency)
     end
 end

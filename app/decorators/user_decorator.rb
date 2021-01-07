@@ -5,4 +5,10 @@ class UserDecorator < Draper::Decorator
     "#{self.name} #{self.surname}"
   end
 
+  def full_address
+    "#{self.address.country}"+"\n"+
+    "Post-code: #{self.address.postcode}"+"\n"+
+    "#{self.address.city} #{self.address.street}"
+  end
+
 end

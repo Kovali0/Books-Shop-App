@@ -16,6 +16,11 @@
     <%= form.text_area :content %>
   </div>
 
+  <div class="field">
+    <%= form.label :rate %>
+    <%= form.number_field :rate, max: 10, min: 0 %>
+  </div>
+
   <%= form.hidden_field :product_id %>
 
   <div class="actions">
